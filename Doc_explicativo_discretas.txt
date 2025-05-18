@@ -2,37 +2,47 @@
 * Documento explicativo de la solución: *
 *****************************************
 
-En resumen, este proyecto consiste en manejar grupos de espíritus mágicos (o clanes, como los llaman) que pueden unirse entre ellos y luego hay que calcular cuántas formas hay de repartir la energía de ese clan. Si un grupo tiene 3 espíritus, hay que decir cuántas formas distintas existen de sumar enteros positivos para llegar a 3.
-Como se trata de agrupaciones y cálculos que pueden repetirse, usé dos cosas clave ya vistas en el curso: conjuntos disjuntos y memoización con recursión.
+En resumen, este proyecto consiste en manejar grupos de espíritus mágicos (o clanes, como los llaman) que pueden unirse entre ellos y 
+luego hay que calcular cuántas formas hay de repartir la energía de ese clan. Si un grupo tiene 3 espíritus, hay que decir cuántas 
+formas distintas existen de sumar enteros positivos para llegar a 3.
+Como se trata de agrupaciones y cálculos que pueden repetirse, usé dos cosas clave ya vistas en el curso: conjuntos disjuntos y 
+memoización con recursión.
 
 ******************************
 * ¿Cómo resolví el problema? *
 ******************************
 
-Primero, cada espíritu empieza solo, y con la operación union x y los voy juntando en clanes. Para esto usé una estructura de conjuntos disjuntos que ya conocíamos de clases. Implementé compresión de caminos y unión por tamaño para que fuera más eficiente (si bien no me pidieron eso explícitamente, durante la clases con el monitor vimos lo importante que es tener las cosas bien optimizadas).
+Primero, cada espíritu empieza solo, y con la operación union x y los voy juntando en clanes. Para esto usé una estructura de 
+conjuntos disjuntos que ya conocíamos de clases. Implementé compresión de caminos y unión por tamaño para que fuera más eficiente 
+(si bien no me pidieron eso explícitamente, durante la clases con el monitor vimos lo importante que es tener las cosas bien optimizadas).
 
-Después, cada vez que me piden partitions x, lo que hago es calcular cuántas formas diferentes hay de sumar números positivos para llegar al tamaño del clan de x. Para eso uso una función recursiva con memoización, así evito repetir cálculos que ya hice antes. 
+Después, cada vez que me piden partitions x, lo que hago es calcular cuántas formas diferentes hay de sumar números positivos 
+para llegar al tamaño del clan de x. Para eso uso una función recursiva con memoización, así evito repetir cálculos que ya hice antes. 
 
 **************************************
 * ¿por qué use números pentagonales? *
 **************************************
 
-
-La verdad, al buscar una forma eficiente de calcular particiones, recordé que había una fórmula que usaba unos números pentagonales que tienen la función super especifica de contar particiones enteras sin tener que probar todas las combinaciones posibles, que sería lentísimo.
+La verdad, al buscar una forma eficiente de calcular particiones, recordé que había una fórmula que usaba unos números 
+pentagonales que tienen la función super especifica de contar particiones enteras sin tener que probar todas las 
+combinaciones posibles, que sería lentísimo.
 
 k(3k±1)/2) 
 
 Esa fórmula es de Euler (no el de análisis numérico, sino el de las identidades curiositas)
 
-La vi originalmente en el libro de David M. Burton "Elementary number theory", pero luego descubrí que tambien estaba en el libro del curso por lo que la usé con confianza, lo probé y funcionó bien. Así que lo dejé así.
+La vi originalmente en el libro de David M. Burton "Elementary number theory", pero luego descubrí que tambien estaba 
+en el libro del curso por lo que la usé con confianza, lo probé y funcionó bien. Así que lo dejé así.
 
 **********************
 * Entradas y salidas *
 **********************
 
-Me dan un número de casos de prueba, en cada caso me dicen cuántos espíritus hay y cuántas operaciones se van a hacer. Luego vienen esas operaciones, que pueden ser unir clanes (union x y) o preguntar por particiones (partitions x).
+Me dan un número de casos de prueba, en cada caso me dicen cuántos espíritus hay y cuántas operaciones se van a hacer. 
+Luego vienen esas operaciones, que pueden ser unir clanes (union x y) o preguntar por particiones (partitions x).
 
-Cada vez que hay un partitions x, imprimo el número de formas de sumar el tamaño de ese clan, y le aplico módulo (10^9) + 7 porque el número puede ser gigante (como dice en el enunciado...).
+Cada vez que hay un partitions x, imprimo el número de formas de sumar el tamaño de ese clan, y le aplico módulo (10^9) + 7 
+porque el número puede ser gigante (como dice en el enunciado...).
 
 ******************************************
 * ¿Qué problemas podría tener el codigo? *
